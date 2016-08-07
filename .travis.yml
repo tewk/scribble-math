@@ -8,6 +8,7 @@ env:
 script:
   - npm install grunt grunt-cli grunt-contrib-clean grunt-regex-replace
   - PATH="$PWD/node_modules/grunt-cli/bin:$PATH" grunt racket-mini
+  - git add -A . && git commit -m "auto-commit"
   - git push --force --quiet "https://${GH_TOKEN}@github.com/jsmaniac/scribble-mathjax.git" `git symbolic-ref HEAD | sed -e 's@.*/@@'`:v2.6-racket-mini
 branches:
   only:
