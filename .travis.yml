@@ -10,8 +10,8 @@ script:
 - PATH="$PWD/node_modules/grunt-cli/bin:$PATH" grunt racket-mini
 - git config --global user.name "Travis CI"
 - git config --global user.email "travis@nobody.com"
-- git add -A . > /dev/null && git commit -m "auto-commit"
-- git log --oneline
+- git add -A . &> /dev/null && git commit -m "auto-commit"
+- git log --oneline --decorate --graph -10
 - git push --force --quiet "https://${GH_TOKEN}@github.com/jsmaniac/scribble-mathjax.git"
   `git symbolic-ref HEAD | sed -e 's@.*/@@'`:v2.6-racket-mini
 branches:
