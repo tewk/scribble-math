@@ -316,6 +316,7 @@ module.exports = function(grunt) {
         "composer.json",
         ".npmignore",
         "package.json"
+        ".travis.yml"
       ]
     },
     "regex-replace": {
