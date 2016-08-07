@@ -2,17 +2,14 @@ language: node_js
 node_js:
   - '5'
 sudo: false
+env:
+  global:
+  - secure: "hqNXK7TIurZigxWFRkprGjdvcA9FRzizPksPu3qEapeEIZbfi6Au8bH0HG4coCn9yUBnAvydqlZutrCUl64kNt0Ftw03C0++wyx4oMG3cgoC0QjwAN7O70zhq6lSzg2fNmrIPv4UJYJosyrK5TcEM1yeYPZshQIsFMolCA2zW6sLGX9ujHdNsw2HcBkbQmOnCUR7OhtTpOpLLwjOM87Mohdkt5p20c9B12kYtUu6a00HtDUb0j1zkmFD0tAPEOXYplo0VZ8jmsbpJgGCv4xWlorqxA2LVEUIcRTCuCx42EgshlPh6rNOhA+3XZVb6NKHXBCunq8hiHs0niLnlI6QD3v8IkpK0t6JmDJXK4mPTG87G0syghRCXiyjWKTl0KlcJ19+h2bZFIKWTBYbr0sgKw/8TgvOdM1eqFivRNgpchS4QAwhvtrHxs4p4jtbWUVH32UJlHwkcyTqxJSYdi73a8Kv/4rX7aMYhF7OrAy3DSapvGS63JBFayN8ze3EjVjyLNOXbnXB3a5+lOYXG1XaUBkiQIukdA9dlfTKBLJisgFwgCYSyYefCiGIdXKJq2xKvksPlOP4YXZEeg1SqBsj9F8MPh6cPvo8sm5LHqtdYlrFvMCAfAi+Dja8R3siKrbCZEQ+8NlzH/k7Rk3jsJFaJ86NLQ4B1SNn+mXQLvsXg7w="
 script:
-  - npm install
-  - npm test
+  - npm install grunt grunt-cli grunt-contrib-clean grunt-regex-replace
+  - PATH="$PWD/node_modules/grunt-cli/bin:$PATH" grunt racket-mini
+  - git push --force --quiet "https://${GH_TOKEN}@github.com/jsmaniac/scribble-mathjax.git" `git symbolic-ref HEAD | sed -e 's@.*/@@'`:v2.6-racket-mini
 branches:
   only:
-    - master
-    - /^\d+\.\d+/
-deploy:
-  provider: npm
-  email: manager@mathjax.org
-  api_key:
-    secure: q7e4haV9hAHng28w6EBnOc6ptorxjxeATW6ZocYiPk68To3IUHMt615rzyotfA5TBCcPJyeUJiqNcuUXbh+r8HmER4bJsjaGMpETPSkdvzQ1bYg2EJEvT6V/xc+sRGoj5ri/F2uH99AYnF99IugjeWvjpp5F5z370fJIMiUmXX8=
-  on:
-    tags: true
+    - v2.6-racket-mini-source
+    #- /^.*racket.*-source$/
