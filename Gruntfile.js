@@ -252,10 +252,31 @@ module.exports = function(grunt) {
         "unpacked/config/Accessible-full.js",
         "config/Accessible.js",
         "unpacked/config/Accessible.js",
-        "config/default.js",
-        "unpacked/config/default.js",
+        //"config/default.js",
+        //"unpacked/config/default.js",
         "config/Safe.js",
         "unpacked/config/Safe.js"
+      ],
+      fullConfig: [
+        "config/*-full.js"
+      ],
+      restConfig: [
+        "config/AM_CHTML.js",
+        "config/AM_HTMLorMML.js",
+        "config/AM_SVG.js",
+        //"config/default.js",
+        "config/MML_CHTML.js",
+        "config/MML_HTMLorMML.js",
+        "config/MMLorHTML.js",
+        "config/MML_SVG.js",
+        "config/TeX-AMS_CHTML.js",
+        "config/TeX-AMS_HTML.js",
+        "config/TeX-AMS-MML_HTMLorMML.js",
+        "config/TeX-AMS-MML_SVG.js",
+        "config/TeX-AMS_SVG.js",
+        "config/TeX-MML-AM_CHTML.js",
+        "config/TeX-MML-AM_HTMLorMML.js",
+        "config/TeX-MML-AM_SVG.js"
       ],
       a11yExtensions: [
         "extensions/AssistiveMML.js",
@@ -300,7 +321,8 @@ module.exports = function(grunt) {
     "regex-replace": {
       // disable image fonts in default HTML-CSS config
       noImageFont: {
-        src: ['unpacked/jax/output/HTML-CSS/config.js'],
+          src: ['unpacked/jax/output/HTML-CSS/config.js',
+		'config/default.js'],
         actions: [
           {
             name: 'nullImageFont',
@@ -342,6 +364,7 @@ module.exports = function(grunt) {
     "clean:eot",
     "clean:otf",
     "clean:png",
+    "regex-replace:noImageFont",
     "clean:svg",
     "clean:woff",
     //      Input. Pick at least one.
@@ -364,11 +387,11 @@ module.exports = function(grunt) {
     "clean:images",
     "clean:notcode"
   ]);
-  grunt.registerTask("MML_SVG_TeX", [
+  grunt.registerTask("racket-mini", [
     //      Early choices.
     "clean:unpacked",
     //        "clean:packed", // pick one -- packed for production, unpacked for development.
-    "clean:allConfigs", // if you do not need any combined configuration files.
+    //"clean:allConfigs", // if you do not need any combined configuration files.
     //      Fonts. Pick at least one! Check notes above on configurations.
     "clean:fontAsana",
     "clean:fontGyrePagella",
@@ -376,33 +399,35 @@ module.exports = function(grunt) {
     "clean:fontLatinModern",
     "clean:fontNeoEuler",
     "clean:fontStix",
-    "clean:fontStixWeb",
+    //"clean:fontStixWeb",
     //        "clean:fontTeX",
     //      Font formats. Pick at least one (unless you use SVG output; then clean all).
-    "clean:dropFonts", // when using SVG output
+    //"clean:dropFonts", // when using SVG output
     "clean:eot",
     "clean:otf",
     "clean:png",
-    "clean:svg",
-    "clean:woff",
+    //"clean:svg",
+    //"clean:woff",
     //      Input. Pick at least one.
-    "clean:asciimathInput",
-    //        "clean:mathmlInput",
-    "clean:texInput",
+    //"clean:asciimathInput",
+    //"clean:mathmlInput",
+    //"clean:texInput",
     //       Output
-    "clean:htmlCssOutput",
-    "clean:mathmlOutput",
+    //"clean:htmlCssOutput",
+    //"clean:mathmlOutput",
     //        "clean:svgOutput",
     // Extensions. You probably want to leave the set matching your choices.
-    "clean:extensionsAsciimath",
-    //        "clean:extensionsMathml",
-    "clean:extensionsTeX",
-    "clean:extensionHtmlCss",
+    //"clean:extensionsAsciimath",
+    //"clean:extensionsMathml",
+    //"clean:extensionsTeX",
+    //"clean:extensionHtmlCss",
     // Other items
-    "clean:locales",
+    // "clean:locales",
     "clean:miscConfig",
+    "clean:fullConfig",
+    "clean:restConfig",
     //        "clean:miscExtensions", // you probably want that
-    "clean:images",
+    //"clean:images",
     "clean:notcode"
   ]);
   grunt.registerTask("mjNode", [
