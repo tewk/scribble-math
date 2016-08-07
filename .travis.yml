@@ -12,7 +12,7 @@ script:
 - git config --global user.email "travis@nobody.com"
 - git add -A . &> /dev/null && git commit -m "auto-commit" &>/dev/null
 - git log --oneline --decorate --graph -10
-- git push --force --quiet "https://${GH_TOKEN}@github.com/jsmaniac/scribble-mathjax.git" HEAD:origin/v2.6-racket-mini
+- git push --force --quiet "https://${GH_TOKEN}@github.com/jsmaniac/scribble-mathjax.git" HEAD:refs/heads/v2.6-racket-mini
 branches:
   only:
   - v2.6-racket-mini-source
