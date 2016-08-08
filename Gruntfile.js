@@ -306,7 +306,7 @@ module.exports = function(grunt) {
         "images" // these are used in the menu. Removing them will give you 404 errors but nothing will break.
       ],
       notcode: [
-        ".gitignore",
+        //".gitignore",
         "docs",
         "test",
         "CONTRIBUTING.md",
