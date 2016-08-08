@@ -315,7 +315,7 @@ module.exports = function(grunt) {
         "bower.json",
         "composer.json",
         ".npmignore",
-        "package.json"
+        "package.json",
         ".travis.yml"
       ]
     },
