@@ -44,6 +44,10 @@
          new-properties))
 
 
+;; Other possible sources for MathJax:
+;"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+;"http://c328740.r40.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=default"
+;"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-HTML"
 
 (define-runtime-path mathjax-dir "MathJax")
 (define-runtime-path katex-dir "katex")
@@ -81,6 +85,10 @@ eojs
 
 (define load-mathjax-code
   (string->bytes/utf-8
+   ;; To avoid the need to alter the MathJax configuration, add:
+   ;; <script type="text/x-mathjax-config">
+   ;;   MathJax.Hub.Config({ tex2jax: {inlineMath: [['$','$']]} });
+   ;; </script>
    (load-script-string "MathJax/MathJax.js?config=default")))
 
 (define load-katex-code+style
