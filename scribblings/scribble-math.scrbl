@@ -201,16 +201,16 @@ $\sum x^3$ is displayed as-is, like the rest of the text.
 
 @defmodule[scribble-math/asymptote]
 
-@defproc[(asymptote [#:cache cache? any/c] [str string?] ...+) image?]{
+@defproc[(asymptote [#:cache cache? any/c #t] [str string?] ...+) image?]{
  Renders the figure described by the given strings using
- Asymptote. To improve compilation speed, if 
- @racket[cache?] is @racket[#f], then the result is cached
- in the @filepath{asymptote-images} directory, based on a
- checksum of the strings. It is a good idea to clean up the
- working directory after experimenting a lot with a figure,
- as it will be cluttered with stale cached files. Otherwise,
- temporary PNG, SVG and PDF files are generated using 
- @racket[make-temporary-file].
+ Asymptote. If @racket[cache?] is @racket[#f], then the
+ resulting images are generated into temporary PNG, SVG and
+ PDF files are generated using @racket[make-temporary-file].
+ Otherwise, to improve compilation speed, the result is
+ cached in the @filepath{asymptote-images} directory, based
+ on a checksum of the strings. It is a good idea to clean up
+ the working directory after experimenting a lot with a
+ figure, as it will be cluttered with stale cached files.
 
  If the Asymptote code is dynamically generated, make sure
  that the result is always the same, or use 
