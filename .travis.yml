@@ -42,8 +42,8 @@ branches:
 addons:
   apt:
     packages:
-    - asymptote
-    - texlive-binaries
+    #- asymptote
+    #- texlive-binaries
 
 before_install:
 - git clone https://github.com/greghendershott/travis-racket.git ~/travis-racket

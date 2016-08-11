@@ -4,4 +4,4 @@
 .DS_Store
 compiled/
 /doc/
-/asymptote-images/
+# /asymptote-images/ needed to build on http://pkg-build.racket-lang.org/
