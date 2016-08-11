@@ -225,7 +225,7 @@ $\sum x^3$ is displayed as-is, like the rest of the text.
  As an example, the the code
  
  @scribbleblock|{
-   @asymptote{
+  @asymptote{
    import drawtree;
    size(4cm, 0);
    TreeNode root = makeNode("let");
@@ -240,7 +240,7 @@ $\sum x^3$ is displayed as-is, like the rest of the text.
    draw(root, (0,0));
    shipout(scale(2)*currentpicture.fit());
   }
-   }|
+ }|
  
  renders as:
  
