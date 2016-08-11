@@ -24,7 +24,7 @@
 
 @(use-mathjax)
 
-@title[#:style (with-html5 manual-doc-style)]{scribble-math}
+@title[#:style (with-html5 manual-doc-style)]{@racketmodname[scribble-math]}
 @author{georges}
 
 @defmodule[scribble-math]
