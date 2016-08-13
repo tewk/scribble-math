@@ -43,20 +43,22 @@ in Scribble documents.
    @scribblecode|{@title[#:style (with-html5 manual-doc-style)]{…}}|)
 
 The following functions help with typesetting mathematical
-equations. The main functions are @racket[$] for inline mode
-math, @racket[$$] for display mode math. The functions 
-@racket[use-katex] and @racket[use-mathjax] change the
-rendering engine used, the default being @racket[katex]. To
-use @racket[katex], it is necessary to use 
-@title-html5-code or a similar configuration, see the
-documentation for @racket[with-html5] for more details.
+equations. The main functions are @racket[$] for
+@tech{inline mode} math and @racket[$$] for @tech{display
+ mode} math, respectively. The functions @racket[use-katex]
+and @racket[use-mathjax] change the rendering engine used,
+the default being @racket[katex]. To use @racket[katex], it
+is necessary to use
+@title-html5-code or a similar configuration; for more
+details see the documentation of @racket[with-html5].
 
 @defproc[($ [str string?] ...) element?]{
- Renders the given strings as inline math, using MathJax or
- KaTeX for the HTML output, depending on the current
- configuration. For the LaTeX output, the code is simply
- passed as-is. For example, when using MathJax, 
- @racket[($ "x^2")] renders as
+ Renders the given strings as @deftech{inline mode} math.
+ Inline mode math is typeset as part of the surrounding
+ text. Either MathJax or KaTeX is used for the HTML output,
+ depending on the current configuration. For the LaTeX
+ output, the code is simply passed as-is. For example, when
+ using MathJax, @racket[($ "x^2")] renders as
  @(use-mathjax) @${x^2}.
 
  The syntax accepted by @racket[$] is a subset of the
@@ -65,11 +67,14 @@ documentation for @racket[with-html5] for more details.
  details, see their respective documentation.}
 
 @defproc[($$ [str string?] ...) element?]{
- Renders the given strings as display math (centered, alone
- on its line), using MathJax or KaTeX for the HTML output,
- depending on the current configuration. For the LaTeX
- output, the code is simply passed as-is. For example, when
- using MathJax,
+ Renders the given strings as @deftech{display mode} math. 
+ Display mode math is typeset alone on its line, and is
+ centered. Some symbols like @${\sum} are larger in display
+ mode than in @tech{inline mode}, which makes the former better for
+ complex equations. Either MathJax or KaTeX is used for the
+ HTML output, depending on the current configuration. For
+ the LaTeX output, the code is simply passed as-is. For
+ example, when using MathJax,
  
  @racketblock[($$ "\\sum_{i=0}^n x_i^3")]
 
@@ -107,56 +112,57 @@ documentation for @racket[with-html5] for more details.
 
 @defparam[$-html-handler handler (→ (listof? string?) element?)
           #:value $-katex]{
- A parameter whose values is a function called by 
- @racket[$], to transform the math code into HTML. The 
- @racket[$] function uses this parameter only when rendering
- the document as HTML.}
+ A parameter whose value is a function called by @racket[$],
+ to transform the math code into HTML. The @racket[$]
+ function uses this parameter only when rendering the
+ document as HTML.}
 
 @defparam[$$-html-handler handler (→ (listof? string?) element?)
           #:value $$-katex]{
- A parameter whose values is a function called by 
- @racket[$], to transform the math code into HTML. The 
- @racket[$] function uses this parameter only when rendering
- the document as HTML.
-}
+ A parameter whose value is a function called by 
+ @racket[$$], to transform the math code into HTML. The 
+ @racket[$$] function uses this parameter only when
+ rendering the document as HTML. }
 
 @defproc[($-katex [math (listof? string?)]) element?]{
  Produces an @racket[element?] which contains the given 
- @racket[math] code, so that it is rendered as inline math
- using KaTeX. More precisely, the resulting element uses
- several scribble properties to add scripts and stylesheets
- to the document. The resulting element also uses a specific
- CSS class so that when the page is loaded into a browser,
- KaTeX can recognise it and render it in inline mode.}
+ @racket[math] code, so that it is rendered as @tech{inline
+  mode} math using KaTeX. More precisely, the resulting
+ element uses several scribble properties to add scripts and
+ stylesheets to the document. The resulting element also
+ uses a specific CSS class so that when the page is loaded
+ into a browser, KaTeX can recognise it and render it in 
+ @tech{inline mode}.}
 
 @defproc[($$-katex [math (listof? string?)]) element?]{
  Produces an @racket[element?] which contains the given 
- @racket[math] code, so that it is rendered as display math
- (centered, alone on its line) using KaTeX. More precisely,
- the resulting element uses several scribble properties to
- add scripts and stylesheets to the document. The resulting
- element also uses a specific CSS class so that when the
- page is loaded into a browser, KaTeX can recognise it and
- render it in display mode.}
+ @racket[math] code, so that it is rendered as @tech{display
+  mode} math (centered, alone on its line) using KaTeX. More
+ precisely, the resulting element uses several scribble
+ properties to add scripts and stylesheets to the document.
+ The resulting element also uses a specific CSS class so
+ that when the page is loaded into a browser, KaTeX can
+ recognise it and render it in @tech{display mode}.}
 
 @defproc[($-mathjax [math (listof? string?)]) element?]{
  Produces an @racket[element?] which contains the given 
- @racket[math] code, so that it is rendered as inline math
- using MathJax. More precisely, the resulting element uses
- several scribble properties to add scripts and stylesheets
- to the document. The resulting element also uses a specific
- CSS class so that when the page is loaded into a browser,
- MathJax can recognise it and render it in inline mode.}
+ @racket[math] code, so that it is rendered as @tech{inline
+  mode} math using MathJax. More precisely, the resulting
+ element uses several scribble properties to add scripts and
+ stylesheets to the document. The resulting element also
+ uses a specific CSS class so that when the page is loaded
+ into a browser, MathJax can recognise it and render it in 
+ @tech{inline mode}.}
 
 @defproc[($$-mathjax [math (listof? string?)]) element?]{
  Produces an @racket[element?] which contains the given 
- @racket[math] code, so that it is rendered as display math
- (centered, alone on its line) using KaTeX. More precisely,
- the resulting element uses several scribble properties to
- add scripts and stylesheets to the document. The resulting
- element also uses a specific CSS class so that when the
- page is loaded into a browser, MathJax can recognise it and
- render it in display mode.}
+ @racket[math] code, so that it is rendered as @tech{display
+  mode} math (centered, alone on its line) using KaTeX. More
+ precisely, the resulting element uses several scribble
+ properties to add scripts and stylesheets to the document.
+ The resulting element also uses a specific CSS class so
+ that when the page is loaded into a browser, MathJax can
+ recognise it and render it in @tech{display mode}.}
 
 @defproc[(use-katex) void?]{
  This shorthand calls @racket[($-html-handler $-katex)]
@@ -166,7 +172,7 @@ documentation for @racket[with-html5] for more details.
  KaTeX.
 
  The KaTeX library will be added to the HTML document only
- if is uses the result of one of @racket[$], @racket[$$], 
+ if it uses the result of one of @racket[$], @racket[$$], 
  @racket[$-katex] or @racket[$$-katex]. It is therefore safe
  to call this function in libraries to change the default
  handler, without the risk of adding extra resources to the
@@ -180,9 +186,8 @@ documentation for @racket[with-html5] for more details.
  later in the document will therefore be typeset using
  MathJax.
 
-
  The MathJax library will be added to the HTML document only
- if is uses the result of one of @racket[$], @racket[$$], 
+ if i uses the result of one of @racket[$], @racket[$$], 
  @racket[$-katex] or @racket[$$-katex]. It is therefore safe
  to call this function in libraries to change the default
  handler, without the risk of adding extra resources to the
@@ -193,11 +198,11 @@ documentation for @racket[with-html5] for more details.
 
 When using MathJax, @racket[$] and @racket[$$] wrap their
 content with @racket["$…$"] and @racket["\\[…\\]"]
-respectively, and insert it in an element with the style 
+respectively, and insert it in an element with the class 
 @racket["tex2jax_process"]. MathJax is configured to only
 process elements with this class, so it is safe to use
 @tt{$} signs in the source document. For example, the text
-$\sum x^3$ is displayed as-is, like the rest of the text.
+$\sum x^3$ is typeset as-is, like the rest of the text.
 
 @section{Drawing figures with Asymptote}
 
@@ -207,12 +212,12 @@ $\sum x^3$ is displayed as-is, like the rest of the text.
  Renders the figure described by the given strings using
  Asymptote. If @racket[cache?] is @racket[#f], then the
  resulting images are generated into temporary PNG, SVG and
- PDF files are generated using @racket[make-temporary-file].
- Otherwise, to improve compilation speed, the result is
- cached in the @filepath{asymptote-images} directory, based
- on a checksum of the strings. It is a good idea to clean up
- the working directory after experimenting a lot with a
- figure, as it will be cluttered with stale cached files.
+ PDF files using @racket[make-temporary-file]. Otherwise, to
+ improve compilation speed, the result is cached in the 
+ @filepath{asymptote-images} directory, based on a checksum
+ of the strings. It is a good idea to clean up the working
+ directory after experimenting a lot with a figure, as it
+ will be cluttered with stale cached files.
 
  If the Asymptote code is dynamically generated, make sure
  that the result is always the same, or use 
@@ -224,7 +229,7 @@ $\sum x^3$ is displayed as-is, like the rest of the text.
  already cached, then the scribble document can be compiled
  without installing Asymptote.
 
- As an example, the the code
+ As an example, the code
  
  @scribbleblock|{
   @asymptote{
