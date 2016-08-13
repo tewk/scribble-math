@@ -1,7 +1,7 @@
 [![Build Status,](https://img.shields.io/travis/jsmaniac/scribble-math/master.svg)](https://travis-ci.org/jsmaniac/scribble-math)
 [![Coverage Status,](https://img.shields.io/coveralls/jsmaniac/scribble-math/master.svg)](https://coveralls.io/github/jsmaniac/scribble-math)
 [![Build Stats,](https://img.shields.io/badge/build-stats-blue.svg)](http://jsmaniac.github.io/travis-stats/#jsmaniac/scribble-math)
-[![Online Documentation.](https://img.shields.io/badge/docs-online-blue.svg)](http://docs.racket-lang.org/scribble-math@scribble-math/)
+[![Online Documentation.](https://img.shields.io/badge/docs-online-blue.svg)](http://docs.racket-lang.org/scribble-math/)
 
 scribble-math
 =============
@@ -19,7 +19,7 @@ To install this package, use `raco`:
 Documentation
 =============
 
-See the [online documentation](http://docs.racket-lang.org/scribble-math@scribble-math/)
+See the [online documentation](http://docs.racket-lang.org/scribble-math/)
 for more information about the math syntax and the
 functionality of this library.
 
