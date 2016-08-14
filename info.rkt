@@ -8,6 +8,7 @@
                      "at-exp-lib"
                      "scribble-doc"))
 (define scribblings '(("scribblings/scribble-math.scrbl" ())))
-(define pkg-desc "Description Here")
+(define pkg-desc "Typesetting math and Asymptote figures in Scribble documents")
 (define version "0.0")
-(define pkg-authors '(georges))
+(define pkg-authors '(|Georges Dupéron|
+                      |Jens Axel Søgaard|))
