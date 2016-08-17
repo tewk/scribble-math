@@ -14,7 +14,7 @@ Installation
 
 To install this package, use `raco`:
 
-    raco pkg install scribble-math
+    raco pkg install --deps search-auto scribble-math
 
 Documentation
 =============
