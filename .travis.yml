@@ -47,6 +47,7 @@ addons:
     - texlive-latex-recommended
     - texlive-latex-extra
     - texlive-fonts-recommended
+    - texlive-fonts-extra
 
 before_install:
 - git clone https://github.com/greghendershott/travis-racket.git ~/travis-racket
