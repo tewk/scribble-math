@@ -44,6 +44,7 @@ addons:
     packages:
     #- asymptote
     #- texlive-binaries
+    - texlive-base
 
 before_install:
 - git clone https://github.com/greghendershott/travis-racket.git ~/travis-racket
