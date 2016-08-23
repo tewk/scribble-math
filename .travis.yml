@@ -45,6 +45,7 @@ addons:
     #- asymptote
     #- texlive-binaries
     - texlive-base
+    - texlive-latex-recommended
 
 before_install:
 - git clone https://github.com/greghendershott/travis-racket.git ~/travis-racket
@@ -62,8 +63,8 @@ before_script:
 script:
  - raco test -x -p scribble-math
  - scribble --pdf scribblings/scribble-math.scrbl
+ - raco setup --check-pkg-deps --pkgs scribble-math
 
 after_success:
- - raco setup --check-pkg-deps --pkgs scribble-math
  - raco pkg install --deps search-auto cover cover-coveralls
  - raco cover -b -f coveralls -d $TRAVIS_BUILD_DIR/coverage .
