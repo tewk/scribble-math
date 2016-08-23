@@ -60,6 +60,7 @@ before_script:
 # packages without it getting stuck on a confirmation prompt.
 script:
  - raco test -x -p scribble-math
+ - scribble --pdf scribblings/scribble-math.scrbl
 
 after_success:
  - raco setup --check-pkg-deps --pkgs scribble-math

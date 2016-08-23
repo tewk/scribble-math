@@ -341,7 +341,7 @@ MathJax.Hub.Config({
     //  restart processing within an element that has been marked as
     //  ignored above.
     //
-    processClass: "tex-math" //"tex2jax_process",
+    processClass: "texMath" //"tex2jax_process",
     
     //
     //  Set to "true" to allow \$ to produce a dollar without starting in-line
