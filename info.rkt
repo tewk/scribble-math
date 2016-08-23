@@ -9,6 +9,6 @@
                      "scribble-doc"))
 (define scribblings '(("scribblings/scribble-math.scrbl" ())))
 (define pkg-desc "Typesetting math and Asymptote figures in Scribble documents")
-(define version "0.0")
+(define version "0.9")
 (define pkg-authors '(|Georges Dupéron|
                       |Jens Axel Søgaard|))
