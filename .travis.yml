@@ -44,7 +44,7 @@ addons:
     packages:
     #- asymptote
     #- texlive-binaries
-    - texlive-base
+    - texlive-latex-base
     - texlive-latex-recommended
 
 before_install:
