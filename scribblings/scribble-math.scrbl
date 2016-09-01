@@ -83,7 +83,7 @@ details see the documentation of @racket[with-html5].
  @(use-mathjax)
  @$${\sum_{i=0}^n x_i^3}
 
- The syntax accepted by @racket[$] is a subset of the
+ The syntax accepted by @racket[$$] is a subset of the
  commands supported by LaTeX, and depends on the backend
  used (MathJax should support more commands than KaTeX). For
  details, see their respective documentation.}
