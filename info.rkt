@@ -7,6 +7,8 @@
                      "racket-doc"
                      "at-exp-lib"
                      "scribble-doc"))
+(define compile-omit-paths '("MathJax" "katex"))
+(define test-omit-paths '("MathJax" "katex"))
 (define scribblings '(("scribblings/scribble-math.scrbl" ())))
 (define pkg-desc "Typesetting math and Asymptote figures in Scribble documents")
 (define version "0.9")
