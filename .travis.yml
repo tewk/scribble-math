@@ -63,7 +63,7 @@ before_script:
 # `raco pkg install --deps search-auto` to install any required
 # packages without it getting stuck on a confirmation prompt.
 script:
- - raco test -x -p scribble-math
+ - raco test -p scribble-math
  - scribble --pdf scribblings/scribble-math.scrbl
  - raco setup --check-pkg-deps --no-zo --no-launcher --no-install --no-post-install --no-docs --pkgs scribble-math
 
