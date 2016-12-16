@@ -38,6 +38,7 @@ matrix:
 branches:
   only:
     - master
+    - dev
 
 addons:
   apt:
