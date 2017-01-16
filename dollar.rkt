@@ -6,7 +6,9 @@
          scribble/latex-properties
          scriblib/render-cond
          racket/runtime-path
-         setup/collects)
+         setup/collects
+         "katex-convert-unicode.rkt"
+         racket/list)
 
 (provide $
          $$
@@ -190,13 +192,15 @@ EOTEX
   (make-element math-inline-style-mathjax `("$" ,@strs "$")))
 
 (define ($-katex strs)
-  (make-element math-inline-style-katex strs))
+  (make-element math-inline-style-katex
+                (map katex-convert-unicode (flatten strs))))
 
 (define ($$-mathjax strs)
   (make-element math-display-style-mathjax `("\\[" ,@strs "\\]")))
 
 (define ($$-katex strs)
-  (make-element math-display-style-katex strs))
+  (make-element math-display-style-katex
+                (map katex-convert-unicode (flatten strs))))
 
 (define $-html-handler (make-parameter $-katex))
 (define $$-html-handler (make-parameter $$-katex))
