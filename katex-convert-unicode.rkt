@@ -91,5 +91,9 @@
          [∀ "\\forall"]
          [∃ "\\exists"]
          [≡ "\\equiv"]
-         [≢ "\not\\equiv"]))
+         [≢ "\not\\equiv"]
+         [… "\\ldots"]
+         [⋯ "\\cdots"]
+         [⋰ "\\uddots"] ;; or \iddots from package mathdots, see http://tex.stackexchange.com/a/17650
+         [⋱ "\\ddots"]))
       str))

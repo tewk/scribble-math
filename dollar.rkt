@@ -216,28 +216,30 @@ EOTEX
   (void))
 
 (define ($ s . strs)
-  (cond-element
-   [html (($-html-handler) `(,s . ,strs))]
-   [latex `("$" ,s ,@strs "$")]
-   ;; TODO: use a unicode representation of math, e.g. x^2 becomes x²
-   [else `(,s . ,strs)]))
+  (let ([$- ($-html-handler)])
+    (cond-element
+     [html ($- `(,s . ,strs))]
+     [latex `("$" ,s ,@strs "$")]
+     ;; TODO: use a unicode representation of math, e.g. x^2 becomes x²
+     [else `(,s . ,strs)])))
 
 (define ($$ s . strs)
-  (cond-element
-   [html (($$-html-handler) `(,s . ,strs))]
-   [latex `("\\[" ,s ,@strs "\\]")]
-   ;; TODO: use a spatial representation of display math, e.g.
-   ;; \sum_{i=0}^n x_i^2
-   ;; becomes:
-   ;;      n
-   ;;     ───
-   ;;     ╲     2
-   ;;      〉   x
-   ;;     ╱     i
-   ;;     ───
-   ;;     i=0
-   ;; Or use a spatial unicode representation, so that the above becomes:
-   ;;  n
-   ;;  ∑  xᵢ²
-   ;; i=0
-   [else `(,s . ,strs)]))
+  (let ([$$- ($$-html-handler)])
+    (cond-element
+     [html ($$- `(,s . ,strs))]
+     [latex `("\\[" ,s ,@strs "\\]")]
+     ;; TODO: use a spatial representation of display math, e.g.
+     ;; \sum_{i=0}^n x_i^2
+     ;; becomes:
+     ;;      n
+     ;;     ───
+     ;;     ╲     2
+     ;;      〉   x
+     ;;     ╱     i
+     ;;     ───
+     ;;     i=0
+     ;; Or use a spatial unicode representation, so that the above becomes:
+     ;;  n
+     ;;  ∑  xᵢ²
+     ;; i=0
+     [else `(,s . ,strs)])))
