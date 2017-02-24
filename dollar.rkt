@@ -161,45 +161,53 @@ EOTEX
                        ))
 
 (define math-inline-style-mathjax
-  (make-style "texMath"
-              (list #;(make-css-addition math-inline.css)
-                    (tex-addition tex-commands)
-                    (install-resource mathjax-dir)
-                    (js-addition load-mathjax-code)
-                    'exact-chars)))
+  (style "texMath"
+         (list #;(make-css-addition math-inline.css)
+               (install-resource mathjax-dir)
+               (js-addition load-mathjax-code)
+               'exact-chars)))
 
 (define math-display-style-mathjax
-  (make-style "texMath"
-              (list #;(make-css-addition math-inline.css)
-                    #;(make-tex-addition math-inline.tex)
-                    (install-resource mathjax-dir)
-                    (js-addition load-mathjax-code)
-                    'exact-chars)))
+  (style "texMath"
+         (list #;(make-css-addition math-inline.css)
+               (install-resource mathjax-dir)
+               (js-addition load-mathjax-code)
+               'exact-chars)))
 
 (define math-inline-style-katex
-  (make-style "texMathInline"
-              (list (install-resource katex-dir)
-                    (js-addition load-katex-code+style)
-                    'exact-chars)))
+  (style "texMathInline"
+         (list (install-resource katex-dir)
+               (js-addition load-katex-code+style)
+               'exact-chars)))
 
 (define math-display-style-katex
-  (make-style "texMathDisplay"
-              (list (install-resource katex-dir)
-                    (js-addition load-katex-code+style)
-                    'exact-chars)))
+  (style "texMathDisplay"
+         (list (install-resource katex-dir)
+               (js-addition load-katex-code+style)
+               'exact-chars)))
+
+(define math-inline-style-latex
+  (style "texMathInline"
+         (list (tex-addition tex-commands)
+               'exact-chars)))
+
+(define math-display-style-latex
+  (style "texMathInline"
+         (list (tex-addition tex-commands)
+               'exact-chars)))
 
 (define ($-mathjax strs)
-  (make-element math-inline-style-mathjax `("$" ,@strs "$")))
+  (elem #:style math-inline-style-mathjax `("$" ,@strs "$")))
 
 (define ($-katex strs)
-  (make-element math-inline-style-katex
+  (elem #:style math-inline-style-katex
                 (map katex-convert-unicode (flatten strs))))
 
 (define ($$-mathjax strs)
-  (make-element math-display-style-mathjax `("\\[" ,@strs "\\]")))
+  (elem #:style math-display-style-mathjax `("\\[" ,@strs "\\]")))
 
 (define ($$-katex strs)
-  (make-element math-display-style-katex
+  (elem #:style math-display-style-katex
                 (map katex-convert-unicode (flatten strs))))
 
 (define $-html-handler (make-parameter $-katex))
@@ -219,7 +227,7 @@ EOTEX
   (let ([$- ($-html-handler)])
     (cond-element
      [html ($- `(,s . ,strs))]
-     [latex `("$" ,s ,@strs "$")]
+     [latex (elem #:style math-inline-style-latex `(,s ,@strs))]
      ;; TODO: use a unicode representation of math, e.g. x^2 becomes x²
      [else `(,s . ,strs)])))
 
@@ -227,7 +235,7 @@ EOTEX
   (let ([$$- ($$-html-handler)])
     (cond-element
      [html ($$- `(,s . ,strs))]
-     [latex `("\\[" ,s ,@strs "\\]")]
+     [latex (elem #:style math-display-style-latex `(,s ,@strs))]
      ;; TODO: use a spatial representation of display math, e.g.
      ;; \sum_{i=0}^n x_i^2
      ;; becomes:
