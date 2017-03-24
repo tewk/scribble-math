@@ -59,15 +59,17 @@
    (collection-file-path "MathJax" "scribble-math")))
 |#
 
-(define (load-script-string src)
+(define (load-script-string src [async-defer #f])
   (string-append
    #<<EOJS
 (function() {
   document.write('<scr' + 'ipt type="text/javascript" src="
 EOJS
    src
+   "\""
+   (if async-defer " async=\"async\" defer=\"defer\" " "")
    #<<EOJS
-"></scr' + 'ipt>');
+></scr' + 'ipt>');
 })();
 EOJS
    ))
