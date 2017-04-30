@@ -12,7 +12,7 @@
  *
  *  ---------------------------------------------------------------------
  *  
- *  Copyright (c) 2009-2015 The MathJax Consortium
+ *  Copyright (c) 2009-2017 The MathJax Consortium
  * 
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -101,7 +101,7 @@ MathJax.Hub.Config({
   //  jax array above, and "asciimath2jax.js" if you using "input/AsciiMath".
   //  Include "jsmath2jax.js" if you are converting from using jsMath to MathJax.
   //
-  extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
+  extensions: ["tex2jax.js"],
   
   //
   //  Patterns to remove from before and after math script tags.  If you are not
@@ -281,7 +281,7 @@ MathJax.Hub.Config({
     //  be able to handle that.
     //
     inlineMath: [
-      ['$','$'],      // uncomment this for standard TeX math delimiters
+//    ['$','$'],      // uncomment this for standard TeX math delimiters
       ['\\(','\\)']
     ],
 
@@ -328,7 +328,7 @@ MathJax.Hub.Config({
     //  in the class name.  Assigning an element this class name will
     //  prevent `tex2jax` from processing its contents.
     //
-    ignoreClass: ".*", //"tex2jax_ignore",
+    ignoreClass: "tex2jax_ignore",
 
     //
     //  This is the class name used to mark elements whose contents SHOULD
@@ -341,7 +341,7 @@ MathJax.Hub.Config({
     //  restart processing within an element that has been marked as
     //  ignored above.
     //
-    processClass: "texMath", //"tex2jax_process",
+    processClass: "tex2jax_process",
     
     //
     //  Set to "true" to allow \$ to produce a dollar without starting in-line
@@ -550,7 +550,8 @@ MathJax.Hub.Config({
 //    formatTag:    function (n) {return '('+n+')'},        // format for \tag and \eqref
 //    formatID:     function (n) {return 'mjx-eqn-'+String(n).replace(/[:'"<>&]/g,"")},
 //                                                          // element ID to use for reference
-//    formatURL:    function (id) {return '#'+escape(id)},  // URL to use for references
+//    formatURL:    function (id,base) {return base+'#'+escape(id)},
+//                                                          // URL to use for references
       useLabelIds: true    // make element ID's use \label name rather than equation number
     },
 
